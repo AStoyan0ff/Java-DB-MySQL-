@@ -1,9 +1,9 @@
 <h1>📚 Java DB – MySQL</h1>
 
 <img 
-  src="https://media.giphy.com/media/coxQHKASG60HrHtvkt/giphy.gif" 
-  alt="MySQL Animation" 
-  width="180"
+  src="https://raw.githubusercontent.com/github/explore/main/topics/mysql/mysql.png" 
+  alt="MySQL Logo" 
+  width="120"
 />
 
 <h3>SoftUni · January 2026</h3>
