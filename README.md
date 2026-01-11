@@ -1,19 +1,28 @@
-# Java-DB-MySQL-
-SoftUni 2026-Jan
+<h1>📚 Java DB – MySQL</h1>
+<h3>SoftUni · January 2026</h3>
 
--- 1. Databases Introduction Data Definition and Datatypes - LAB
--- 2. Databases Introduction Data Definition and Datatypes - EXERCISE
--- 3. Basic CRUD - LAB
--- 4. Basic CRUD - EXERCISE
--- 5. Built-in Functions - LAB
--- 6. Built-in Functions - EXERCISE
--- 7. Data Aggregation - LAB
--- 8. Data Aggregation - EXERCISE
--- 9. Table Relations - LAB
--- 10. Table Relations - EXERCISE
--- 11. Subqueries and JOINs - LAB
--- 12. Subqueries and JOINs - EXERCISE
--- 13. Database Programmability and Transactions 
--- 14. Functions and Procedures - EXERCISE
--- 15. Exam Preparation 
--- 16. Final Match 
+<hr>
+
+<ul>
+  <li>📘 <strong>1.</strong> Databases Introduction – Data Definition and Datatypes <em>(LAB)</em></li>
+  <li>📗 <strong>2.</strong> Databases Introduction – Data Definition and Datatypes <em>(EXERCISE)</em></li>
+  <li>📘 <strong>3.</strong> Basic CRUD <em>(LAB)</em></li>
+  <li>📗 <strong>4.</strong> Basic CRUD <em>(EXERCISE)</em></li>
+  <li>📘 <strong>5.</strong> Built-in Functions <em>(LAB)</em></li>
+  <li>📗 <strong>6.</strong> Built-in Functions <em>(EXERCISE)</em></li>
+  <li>📘 <strong>7.</strong> Data Aggregation <em>(LAB)</em></li>
+  <li>📗 <strong>8.</strong> Data Aggregation <em>(EXERCISE)</em></li>
+  <li>📘 <strong>9.</strong> Table Relations <em>(LAB)</em></li>
+  <li>📗 <strong>10.</strong> Table Relations <em>(EXERCISE)</em></li>
+  <li>📘 <strong>11.</strong> Subqueries and JOINs <em>(LAB)</em></li>
+  <li>📗 <strong>12.</strong> Subqueries and JOINs <em>(EXERCISE)</em></li>
+  <li>🧩 <strong>13.</strong> Database Programmability and Transactions</li>
+  <li>⚙️ <strong>14.</strong> Functions and Procedures <em>(EXERCISE)</em></li>
+  <li>📝 <strong>15.</strong> Exam Preparation</li>
+  <li>🏁 <strong>16.</strong> Final Exam</li>
+</ul>
+
+<hr>
+
+<p>🚀 Repository containing labs, exercises, and exam preparation materials for the <strong>Java DB – MySQL</strong> course at SoftUni.</p>
+
