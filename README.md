@@ -1,4 +1,11 @@
 <h1>📚 Java DB – MySQL</h1>
+
+<img 
+  src="https://media.giphy.com/media/coxQHKASG60HrHtvkt/giphy.gif" 
+  alt="MySQL Animation" 
+  width="180"
+/>
+
 <h3>SoftUni · January 2026</h3>
 
 <hr>
