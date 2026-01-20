@@ -41,7 +41,7 @@ CREATE TABLE `peaks` (
     CONSTRAINT fk_peaks_mountains
 	FOREIGN KEY (mountain_id)
 	REFERENCES mountains(id)
-    ON DELETE CASCADE
+    
 );
 DESCRIBE peaks;
 
@@ -75,5 +75,6 @@ CREATE TABLE `peaks` (
     CONSTRAINT fk_peaks_mountains
 	FOREIGN KEY (mountain_id)
 	REFERENCES mountains(id)
-    ON DELETE CASCADE
+    	ON DELETE CASCADE
 );
+-- Yabba-Dabba-Doo ;)
