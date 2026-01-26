@@ -52,17 +52,28 @@ JOIN `departments`d
 ORDER BY d.department_id DESC
 LIMIT 5; 
 
--- 05. Employees Without Project
+-- 05. Employees Without Project - вариант 1
 SELECT 
     e.employee_id AS '#',
-    e.first_name AS `First Name`
-FROM `employees` AS e
-LEFT JOIN `employees_projects` AS ep
+    e.first_name AS `First-Name`
+FROM `employees_projects` AS ep
+RIGHT JOIN `employees` AS e
     ON e.employee_id = ep.employee_id
 WHERE ep.project_id IS NULL
 ORDER BY e.employee_id DESC
 LIMIT 3;
-  
+
+-- 05. Employees Without Project - вариант 2
+SELECT
+	employee_id, 
+    first_name
+FROM `employees`
+WHERE employee_id NOT IN
+	(SELECT employee_id
+     FROM `employees_projects`)
+ORDER BY employee_id DESC
+LIMIT 3;      
+ 
 -- 06. Employees Hired After
 SELECT 
 	e.first_name AS `First Name`,
@@ -76,7 +87,7 @@ WHERE e.hire_date > '1999-01-01'
 AND d.name IN ('Sales', 'Finance')
 ORDER BY e.hire_date;
 
--- 07. Employees with Project -> (83/100)
+-- 07. Employees with Project 
 SELECT 
     e.employee_id AS '#',
     e.first_name AS `First-Name`,
@@ -104,6 +115,23 @@ JOIN `projects` p
 WHERE e.employee_id = 24
 ORDER BY `Projects` ASC;
 
+-- 08. Employee 24 - вариант 2 CASE-END
+SELECT 
+    e.employee_id AS '#',
+    e.first_name AS `First Name`,
+    CASE
+        WHEN p.start_date >= '2005-01-01' THEN NULL
+        ELSE p.name
+    END AS `Projects`
+FROM `employees` e
+JOIN `employees_projects` ep
+    ON e.employee_id = ep.employee_id
+JOIN `projects` p
+    ON ep.project_id = p.project_id
+WHERE e.employee_id = 24
+ORDER BY `Projects` ASC;
+
+
 -- 09. Employee Manager
 SELECT 
     e.employee_id AS '#',
@@ -121,25 +149,45 @@ ORDER BY e.first_name;
 -- 10. Employee Summary
 SELECT
 	e.employee_id AS '#',
-    CONCAT_WS(' ', e.first_name, e.last_name) AS `Employee Name`,
-    CONCAT_WS(' ', em.first_name, em.last_name) AS `Manager Name`,
-    d.name AS `Department Name`
+    CONCAT_WS(' ', e.first_name, e.last_name) AS `Employee-Name`,
+    CONCAT_WS(' ', em.first_name, em.last_name) AS `Manager-Name`,
+    d.name AS `Department-Name`
 FROM `employees` e 
 JOIN `employees` em 
 	ON e.manager_id = em.employee_id
 JOIN `departments` d 
 	ON e.department_id = d.department_id
 ORDER BY e.employee_id ASC
-LIMIT 5;    
+LIMIT 5;   
+
+-- 10. Employee Summary -> вариант 2
+SELECT
+    e.employee_id AS '#',
+    CONCAT_WS(' ', e.first_name, e.last_name) AS `Employee-Name`,
+    (
+        SELECT 
+			CONCAT_WS(' ', em.first_name, em.last_name)
+        FROM `employees` em
+        WHERE em.employee_id = e.manager_id
+    ) AS `Manager-Name`,
+    (
+        SELECT d.name
+        FROM `departments` d
+        WHERE d.department_id = e.department_id
+    ) AS `Department-Name`
+FROM `employees` e
+ORDER BY e.employee_id ASC
+LIMIT 5;
+  
 
 -- 11. Min Average Salary
 SELECT 
     MIN(avg_salary) AS `Min Avg Salary`
 FROM (
-SELECT 
+	SELECT 
 	AVG(e.salary) AS 'avg_salary'
-FROM employees AS e
-GROUP BY e.department_id
+	FROM employees AS e
+	GROUP BY e.department_id
 ) AS dept_avgs;
 
 -- 12. Highest Peaks in Bulgaria
@@ -150,7 +198,7 @@ GROUP BY e.department_id
 SELECT 
     c.country_code AS `Codes`,
     m.mountain_range AS `Mountain`,
-    p.peak_name AS `Peak Name`,
+    p.peak_name AS `Peak-Name`,
     p.elevation AS `Elevation`
 FROM `countries` AS c
 JOIN `mountains_countries` AS mc -- (свързваща таблица)
@@ -166,6 +214,7 @@ ORDER BY p.elevation DESC;
 -- 13. Count Mountain Ranges 
 -- `countries` -> (county_code)
 -- `mountains` -> (mountain_range)
+
 SELECT 
     c.country_code AS `# Code`,
     COUNT(*) AS `Mountain-Range`
