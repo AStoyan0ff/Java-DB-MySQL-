@@ -20,8 +20,8 @@ CREATE TABLE `customers` (
     phone_number VARCHAR(20) NOT NULL UNIQUE,
     regular TINYINT(1) NOT NULL,
     
-		CONSTRAINT uq_full_name
-			UNIQUE (first_name, last_name)
+		CONSTRAINT `uq_full_name`
+		UNIQUE (first_name, last_name)
 );
 
 CREATE TABLE `offerings` (
@@ -31,9 +31,9 @@ CREATE TABLE `offerings` (
     vegan TINYINT(1) NOT NULL,
     restaurant_id INT NOT NULL,
     
-		CONSTRAINT fk_offerings_restaurants
-			FOREIGN KEY(restaurant_id)
-            REFERENCES restaurants(id)
+		CONSTRAINT `fk_offerings_restaurants`
+		FOREIGN KEY(restaurant_id)
+		REFERENCES `restaurants`(id)
 );
 
 CREATE TABLE `orders` (
@@ -43,13 +43,13 @@ CREATE TABLE `orders` (
     customer_id INT NOT NULL,
     restaurant_id INT NOT NULL,
     
-		CONSTRAINT fk_orders_customers
+		CONSTRAINT `fk_orders_customers`
 			FOREIGN KEY (customer_id)
-            REFERENCES customers(id),
+            REFERENCES `customers`(id),
             
-        CONSTRAINT fk_orders_restaurants
+        CONSTRAINT `fk_orders_restaurants`
 			FOREIGN KEY (restaurant_id)
-            REFERENCES restaurants(id)
+            REFERENCES `restaurants`(id)
 );
 
 CREATE TABLE `orders_offerings` (
@@ -58,17 +58,17 @@ CREATE TABLE `orders_offerings` (
     restaurant_id INT NOT NULL,
     PRIMARY KEY (order_id, offering_id),
     
-    CONSTRAINT fk_of_orders
+    CONSTRAINT `fk_of_orders`
         FOREIGN KEY (order_id)
-        REFERENCES orders(id),
+        REFERENCES `orders`(id),
         
     CONSTRAINT fk_of_offerings
         FOREIGN KEY (offering_id)
         REFERENCES offerings(id),
         
-    CONSTRAINT fk_of_restaurants
+    CONSTRAINT `fk_of_restaurants`
         FOREIGN KEY (restaurant_id)
-        REFERENCES restaurants(id)
+        REFERENCES `restaurants`(id)
 );
 
 -- 02. Insert 10/10
@@ -124,8 +124,8 @@ JOIN `orders_offerings` AS oo
 JOIN `offerings` AS o 
 	ON oo.offering_id = o.id
 WHERE c.first_name = 'Sofia'
-AND c.last_name = 'Sanchez'
-AND o.vegan = 0
+	AND c.last_name = 'Sanchez'
+	AND o.vegan = 0
 ORDER BY o.id;
 
 -- 08 . Get all restaurants with regular customers 10/10
@@ -143,8 +143,8 @@ JOIN `orders_offerings` oo
 JOIN `offerings` ofr
     ON oo.offering_id = ofr.id
 WHERE c.regular = 1
-AND ofr.vegan = 1
-AND o.priority = 'high'
+	AND ofr.vegan = 1
+	AND o.priority = 'high'
 ORDER BY r.id;
     
 -- 09. Offering price categories 15/15
@@ -201,7 +201,7 @@ BEGIN
         ON ofr.restaurant_id = res.id
     SET ofr.price = ofr.price + 5.00
     WHERE res.type = restaurant_type
-    AND res.non_stop = 1;
+      AND res.non_stop = 1;
       
 END //
 
